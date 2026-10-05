@@ -25,7 +25,7 @@
           "lib/",
           "test/"
         ],
-        excluded: [~r"/_build/", ~r"/deps/", ~r"/node_modules/"]
+        excluded: [~r"/_build/", ~r"/deps/"]
       },
       #
       # Load and configure plugins here:
