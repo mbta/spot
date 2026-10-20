@@ -27,7 +27,7 @@ defmodule Spot.MixProject do
       {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.4.8", only: [:dev, :test], runtime: false},
       {:dns_cluster, "0.2.0"},
-      {:req, "0.7.4"},
+      {:req, "== 0.7.5"},
       {:tz, "0.28.4"},
       {:ex_aws, "2.7.0"},
       {:ex_aws_s3, "2.5.9"}
