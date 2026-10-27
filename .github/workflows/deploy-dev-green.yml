@@ -1,0 +1,29 @@
+name: Deploy to Dev-Green
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - synchronize
+      - labeled
+
+permissions: {}
+
+jobs:
+  deploy:
+    name: Deploy to Dev-Green
+    concurrency:
+      group: dev-green
+      cancel-in-progress: true
+    permissions:
+      id-token: write # allows workflow to exchange short-lived tokens directly from cloud provider
+      contents: read
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'deploy-to-dev-green') }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      env: dev-green
+      version-name: ${{ (github.event_name == 'workflow_dispatch' && 'main') || format('pr-{0}', github.event.pull_request.number) }}
+    secrets:
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+      DOCKER_REPO: ${{ secrets.DOCKER_REPO }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
