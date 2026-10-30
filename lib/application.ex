@@ -4,7 +4,8 @@ defmodule Spot.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {DNSCluster, Application.fetch_env!(:spot, DNSCluster)}
+      {DNSCluster, Application.fetch_env!(:spot, DNSCluster)},
+      Spot.CertTest
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Spot.Supervisor)
