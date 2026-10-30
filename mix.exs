@@ -24,6 +24,7 @@ defmodule Spot.MixProject do
     [
       # used by ex_aws to parse AWS CLI settings/credentials
       {:configparser_ex, "5.0.1", only: :dev},
+      {:castore, "1.0.22"},
       {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.4.8", only: [:dev, :test], runtime: false},
       {:dns_cluster, "0.2.0"},
