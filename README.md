@@ -8,10 +8,9 @@ a Mix git dependency over HTTPS.
 
 ### Local setup
 
-`mix deps.get` needs HTTPS access to the repo. Authenticate with the GitHub CLI:
-
-    gh auth login
-    gh auth setup-git
+Make sure git can authenticate to GitHub over HTTPS (for example `gh
+auth login`, then `gh auth setup-git`) to ensure that `mix deps.get` runs
+successfully.
 
 ### Updating the data
 
