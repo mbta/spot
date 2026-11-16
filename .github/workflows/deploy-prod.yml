@@ -1,0 +1,28 @@
+name: Deploy to Prod
+
+on:
+  release:
+    types:
+      - released
+
+concurrency:
+  group: prod
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  deploy:
+    name: Deploy to Prod
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      id-token: write # allows workflow to exchange short-lived tokens directly from cloud provider
+      contents: read
+    with:
+      env: prod
+      version-name: ${{ github.event.release.tag_name }}
+    secrets:
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+      DOCKER_REPO: ${{ secrets.DOCKER_REPO }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      SUBWAY_INPUTS_ACCESS_TOKEN: ${{ secrets.SUBWAY_INPUTS_ACCESS_TOKEN }}
