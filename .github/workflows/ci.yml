@@ -82,6 +82,10 @@ jobs:
             _build
           key: ${{ steps.cache-keys.outputs.mix-deps }}
           restore-keys: ${{ steps.cache-keys.outputs.mix-deps-restore }}
+      - name: Authenticate git for private subway_inputs dependency
+        env:
+          SUBWAY_INPUTS_ACCESS_TOKEN: ${{ secrets.SUBWAY_INPUTS_ACCESS_TOKEN }}
+        run: git config --global url."https://x-access-token:${SUBWAY_INPUTS_ACCESS_TOKEN}@github.com/mbta/subway_inputs".insteadOf "https://github.com/mbta/subway_inputs"
       - name: Install and compile Mix dependencies
         if: steps.deps-cache.outputs.cache-hit != 'true'
         run: |
