@@ -21,7 +21,7 @@ RUN mix compile
 RUN mix release --path /app-release
 
 # Runtime stage
-FROM hexpm/elixir:1.20.4-erlang-29.1.2-alpine-3.24.3 as runtime
+FROM hexpm/elixir:1.20.4-erlang-29.1.2-alpine-3.24.3 AS runtime
 
 COPY --from=elixir /app-release .
 
