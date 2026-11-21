@@ -27,7 +27,7 @@ defmodule Spot.MixProject do
       {:castore, "1.0.22"},
       {:credo, "1.7.19", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.4.8", only: [:dev, :test], runtime: false},
-      {:dns_cluster, "0.2.0"},
+      {:dns_cluster, "== 0.3.1"},
       {:req, "0.7.4"},
       {:subway_inputs, git: "https://github.com/mbta/subway_inputs.git", branch: "main"},
       {:tz, "0.28.4"},
